@@ -5,10 +5,7 @@ $alpha = include __DIR__.'/letters.php';
 $screen = new Screen(101, 31);
 $screen->clear();
 
-$screen->line([0,0],   [100,0],  '#'); // Top border
-$screen->line([0,30],  [100,30], '#'); // Bottom border
-$screen->line([0,0],   [0,30],   '#'); // Left border
-$screen->line([100,0], [100,30], '#'); // Right border
+$screen->rect([0,0], [100,30], '#');
 
 $screen->spriteWord([5,3], 'Hello, world!', $alpha);
 $screen->spriteWord([5,9], '0123456789', $alpha);

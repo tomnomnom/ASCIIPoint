@@ -87,5 +87,15 @@ class Screen {
     }
   }
 
+  public function rect($c, $size, $char = '#'){
+    list($x, $y) = $c;
+    list($w, $h) = $size;
+
+    $this->line([$x,    $y],    [$x+$w, $y],    $char); // Top
+    $this->line([$x,    $y+$h], [$x+$w, $y+$h], $char); // Bottom
+    $this->line([$x,    $y],    [$x,    $y+$h], $char); // Left
+    $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char); // Right
+  }
+
 }
 
