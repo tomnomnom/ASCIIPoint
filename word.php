@@ -30,7 +30,7 @@ $screen->attachSpriteObject($border);
 while (true){
   $screen->clear();
   $screen->drawFrame();
-  usleep(100000);
+  usleep(65000);
 }
 
 
