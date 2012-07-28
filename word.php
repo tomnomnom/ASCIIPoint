@@ -10,7 +10,8 @@ $screen->line([0,30],  [100,30], '#'); // Bottom border
 $screen->line([0,0],   [0,30],   '#'); // Left border
 $screen->line([100,0], [100,30], '#'); // Right border
 
-$screen->spriteWord([5,3], 'HELLO', $alpha);
+$screen->spriteWord([5,3], 'Hello, world!', $alpha);
+$screen->spriteWord([5,9], '0123456789', $alpha);
 
 $screen->drawFrame();
 

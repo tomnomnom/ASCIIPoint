@@ -76,7 +76,7 @@ class Screen {
 
   public function spriteWord($c, $word, $alphabet){
     list($x, $y) = $c;
-    $chars = str_split($word);
+    $chars = str_split(strToUpper($word));
 
     foreach ($chars as $char){
       if (!isSet($alphabet[$char])) continue;
