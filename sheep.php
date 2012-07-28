@@ -1,6 +1,6 @@
 <?php
 include __DIR__.'/lib/screen.php';
-include __DIR__.'/lib/sprite.php';
+include __DIR__.'/lib/actor.php';
 
 $alpha = include __DIR__.'/letters.php';
 
@@ -11,17 +11,17 @@ $sheepy = array_map(function($line){
   return trim($line, "\n");
 }, file(__DIR__."/images/tomnomnom.jpg.txt"));
 
-$sheepySprite = new Sprite([100,30], function($screen) use($sheepy){
+$sheepyActor = new Actor([100,30], function($screen) use($sheepy){
   $this->slideX(2, 3);
   $this->slideY(2, 1);
   $screen->sprite($this->c, $sheepy);
 });
-$screen->attachSpriteObject($sheepySprite);
+$screen->attachActor($sheepyActor);
 
-$border = new Sprite([0,0], function($screen){
+$border = new Actor([0,0], function($screen){
   $screen->rect($this->c, [100,30], '#');
 });
-$screen->attachSpriteObject($border);
+$screen->attachActor($border);
 
 while (true){
   $screen->clear();

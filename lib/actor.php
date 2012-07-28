@@ -1,5 +1,5 @@
 <?php
-class Sprite {
+class Actor {
   public $c = [0,0];
   protected $tickFn;
 

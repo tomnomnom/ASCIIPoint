@@ -8,25 +8,25 @@ class Screen {
   protected $height = self::DEFAULT_HEIGHT;
 
   protected $matrix = [];
-  protected $spriteObjects = null;
+  protected $actors = null;
 
   public function __construct($width = self::DEFAULT_WIDTH, $height = self::DEFAULT_HEIGHT){
     $this->width  = $width; 
     $this->height = $height; 
-    $this->spriteObjects = new SplObjectStorage();
+    $this->actors = new SplObjectStorage();
   }
 
-  public function attachSpriteObject(Sprite $spriteObject){
-    $this->spriteObjects->attach($spriteObject);
+  public function attachActor(Actor $spriteObject){
+    $this->actors->attach($spriteObject);
   }
 
-  public function detachSpriteObject(Sprite $spriteObject){
-    $this->spriteObjects->detach($spriteObject);
+  public function detachActor(Actor $spriteObject){
+    $this->actors->detach($spriteObject);
   }
 
   public function drawFrame(){
-    foreach ($this->spriteObjects as $spriteObject){
-      $spriteObject->tick($this);
+    foreach ($this->actors as $actor){
+      $actor->tick($this);
     }
 
     system('clear');
