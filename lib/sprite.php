@@ -8,11 +8,19 @@ class Sprite {
     $this->tickFn = $tickFn->bindTo($this); 
   }
 
-  public function slideX($x, $step = 2){
+  public function slideXLeft($x, $step = 2){
     if ($this->c[0] > $x){
       $this->c[0] -= $step;
     } else {
       $this->c[0] = $x;
+    }
+  }
+
+  public function slideYUp($y, $step = 2){
+    if ($this->c[1] > $y){
+      $this->c[1] -= $step;
+    } else {
+      $this->c[1] = $y;
     }
   }
 

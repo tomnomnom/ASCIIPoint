@@ -11,8 +11,9 @@ $sheepy = array_map(function($line){
   return trim($line, "\n");
 }, file(__DIR__."/images/tomnomnom.jpg.txt"));
 
-$sheepySprite = new Sprite([100,2], function($screen) use($sheepy){
-  $this->slideX(5);
+$sheepySprite = new Sprite([100,40], function($screen) use($sheepy){
+  $this->slideXLeft(5);
+  $this->slideYUp(2);
   $screen->sprite($this->c, $sheepy);
 });
 $screen->attachSpriteObject($sheepySprite);
