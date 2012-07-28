@@ -112,13 +112,25 @@ class Screen {
     $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char); // Right
   }
 
-  public function text($c, $text){
+  public function text($c, $text, $width = null){
     list($x, $y) = $c;
-    $chars = str_split($text);
 
-    foreach ($chars as $char){
-      $this->setPixel([$x, $y], $char);
-      $x++;
+    if (is_null($width)){
+      $width = strlen($text);
+    }
+
+    $lines = explode("\n", wordwrap($text, $width, "\n"));
+
+    foreach ($lines as $line){
+      $chars = str_split($line);
+
+      foreach ($chars as $char){
+        if (!$char) continue;
+        $this->setPixel([$x, $y], $char);
+        $x++;
+      }
+      $x = $c[0]; // Reset X
+      $y++; // Next line down for the text
     }
   }
 

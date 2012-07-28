@@ -16,7 +16,7 @@ $bio = new Actor([60,5], function($screen){
   static $displayText;
 
   if (is_null($targetText)){
-    $targetText = str_split('This is the bio text');
+    $targetText = str_split("This is the bio text and it \nis too long to fit on the screen");
   }
 
   $displayText .= array_shift($targetText);
