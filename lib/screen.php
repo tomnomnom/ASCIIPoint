@@ -17,10 +17,10 @@ class Screen {
 
   public function drawFrame(){
     system('clear');
-
-    foreach ($this->matrix as $row){
-      foreach ($row as $pixel){
-        echo $pixel;
+    
+    for ($i = 0; $i < $this->height; $i++){
+      for ($j = 0; $j < $this->width; $j++){
+        echo $this->matrix[$i][$j];
       }
       echo PHP_EOL;
     }
@@ -54,7 +54,7 @@ class Screen {
     } else if ($start[1] == $finish[1]){
       // horiz
       $y = $start[1];
-      for ($x = $start[0]; $x < $finish[0]; $x++){
+      for ($x = $start[0]; $x <= $finish[0]; $x++){
         $this->setPixel([$x, $y], $char);
       }
 
@@ -71,6 +71,19 @@ class Screen {
       }
       $x = $c[0]; // Reset the $x coord
       $y++;
+    }
+  }
+
+  public function spriteWord($c, $word, $alphabet){
+    list($x, $y) = $c;
+    $chars = str_split($word);
+
+    foreach ($chars as $char){
+      if (!isSet($alphabet[$char])) continue;
+      $sprite = $alphabet[$char];
+      
+      $this->sprite([$x, $y], $sprite);
+      $x += 6;
     }
   }
 
