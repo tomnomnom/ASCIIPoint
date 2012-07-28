@@ -17,6 +17,7 @@ class Screen {
 
   public function drawFrame(){
     system('clear');
+
     foreach ($this->matrix as $row){
       foreach ($row as $pixel){
         echo $pixel;
