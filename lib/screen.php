@@ -31,12 +31,14 @@ class Screen {
 
     system('clear');
     
+    $output = '';
     for ($i = 0; $i < $this->height; $i++){
       for ($j = 0; $j < $this->width; $j++){
-        echo $this->matrix[$i][$j];
+        $output .= $this->matrix[$i][$j];
       }
-      echo PHP_EOL;
+      $output .= PHP_EOL;
     }
+    echo $output;
   }
 
   public function clear(){
