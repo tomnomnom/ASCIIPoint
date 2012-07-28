@@ -110,5 +110,15 @@ class Screen {
     $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char); // Right
   }
 
+  public function text($c, $text){
+    list($x, $y) = $c;
+    $chars = str_split($text);
+
+    foreach ($chars as $char){
+      $this->setPixel([$x, $y], $char);
+      $x++;
+    }
+  }
+
 }
 

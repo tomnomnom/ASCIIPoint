@@ -8,23 +8,29 @@ $screen = new Screen(101, 31);
 $screen->clear();
 
 $helloWorld = new Sprite([100, 5], function($screen) use($alpha){
-  if ($this->c[0] > 6){
-    $this->c[0]--;
+  if ($this->c[0] > 8){
+    $this->c[0] -= 3;
+  } else {
+    $this->c[0] = 5;
   }
   $screen->spriteWord($this->c, 'Hello, world!', $alpha);
 });
+$screen->attachSpriteObject($helloWorld);
+
+$textTest = new Sprite([5,10], function($screen){
+  $screen->text($this->c, 'I am some text');
+});
+$screen->attachSpriteObject($textTest);
 
 $border = new Sprite([0,0], function($screen){
   $screen->rect($this->c, [100,30], '#');
 });
-
-$screen->attachSpriteObject($helloWorld);
 $screen->attachSpriteObject($border);
 
 while (true){
   $screen->clear();
   $screen->drawFrame();
-  usleep(25000);
+  usleep(100000);
 }
 
 
