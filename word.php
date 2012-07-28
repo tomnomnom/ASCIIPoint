@@ -7,17 +7,24 @@ $alpha = include __DIR__.'/letters.php';
 $screen = new Screen(101, 31);
 $screen->clear();
 
-$helloWorld = new Sprite(function($screen) use($alpha){
-  $screen->spriteWord([3,3], 'Hello, world!', $alpha);
+$helloWorld = new Sprite([100, 5], function($screen) use($alpha){
+  if ($this->c[0] > 6){
+    $this->c[0]--;
+  }
+  $screen->spriteWord($this->c, 'Hello, world!', $alpha);
+});
+
+$border = new Sprite([0,0], function($screen){
+  $screen->rect($this->c, [100,30], '#');
 });
 
 $screen->attachSpriteObject($helloWorld);
+$screen->attachSpriteObject($border);
 
-$screen->clear();
-
-//$screen->spriteWord([5,9], '0123456789', $alpha);
-
-$screen->rect([0,0], [100,30], '#');
-$screen->drawFrame();
+while (true){
+  $screen->clear();
+  $screen->drawFrame();
+  usleep(25000);
+}
 
 

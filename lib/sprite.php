@@ -1,9 +1,10 @@
 <?php
 class Sprite {
-  protected $c = [0,0];
+  public $c = [0,0];
   protected $tickFn;
 
-  public function __construct(Callable $tickFn){
+  public function __construct(Array $c, Callable $tickFn){
+    $this->c = $c;
     $this->tickFn = $tickFn->bindTo($this); 
   }
 
