@@ -8,11 +8,7 @@ $screen = new Screen(101, 31);
 $screen->clear();
 
 $helloWorld = new Sprite([100, 5], function($screen) use($alpha){
-  if ($this->c[0] > 8){
-    $this->c[0] -= 3;
-  } else {
-    $this->c[0] = 5;
-  }
+  $this->slideX(5);
   $screen->spriteWord($this->c, 'Hello, world!', $alpha);
 });
 $screen->attachSpriteObject($helloWorld);

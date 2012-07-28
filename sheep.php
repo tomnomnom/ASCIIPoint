@@ -12,9 +12,7 @@ $sheepy = array_map(function($line){
 }, file(__DIR__."/images/tomnomnom.jpg.txt"));
 
 $sheepySprite = new Sprite([100,2], function($screen) use($sheepy){
-  if ($this->c[0] > 5){
-    $this->c[0] -= 2;
-  } 
+  $this->slideX(5);
   $screen->sprite($this->c, $sheepy);
 });
 $screen->attachSpriteObject($sheepySprite);
