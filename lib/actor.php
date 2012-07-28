@@ -62,4 +62,8 @@ class Actor {
     $tickFn = $this->tickFn;
     $tickFn($screen);
   }
+
+  public function typewrite($text){
+
+  }
 }

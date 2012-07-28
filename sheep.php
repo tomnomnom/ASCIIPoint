@@ -7,14 +7,30 @@ $alpha = include __DIR__.'/letters.php';
 $screen = new Screen(101, 31);
 $screen->clear();
 
-$sheepy = array_map(function($line){
+$sheepySprite = array_map(function($line){
   return trim($line, "\n");
 }, file(__DIR__."/images/tomnomnom.jpg.txt"));
 
-$sheepyActor = new Actor([100,30], function($screen) use($sheepy){
-  $this->slideX(2, 3);
+$bio = new Actor([60,5], function($screen){
+  static $targetText = null;
+  static $displayText;
+
+  if (is_null($targetText)){
+    $targetText = str_split('This is the bio text');
+  }
+
+  $displayText .= array_shift($targetText);
+  $screen->text($this->c, $displayText);
+});
+
+$sheepyActor = new Actor([100,30], function($screen) use($sheepySprite, $bio){
   $this->slideY(2, 1);
-  $screen->sprite($this->c, $sheepy);
+  $xFinished = $this->slideX(2, 3);
+  $screen->sprite($this->c, $sheepySprite);
+
+  if ($xFinished){
+    $screen->attachActor($bio); 
+  }
 });
 $screen->attachActor($sheepyActor);
 
