@@ -16,8 +16,8 @@ $textTest = new Sprite([60,10], function($screen){
 });
 
 $sheepySprite = new Sprite([50,40], function($screen) use($sheepy,$textTest){
-  if ($this->slideYUp(2)){
-    if ($this->slideXLeft(5)){
+  if ($this->slideY(2)){
+    if ($this->slideX(5)){
       $screen->attachSpriteObject($textTest);
     }
   }

@@ -8,31 +8,10 @@ class Sprite {
     $this->tickFn = $tickFn->bindTo($this); 
   }
 
-  public function slideXLeft($x, $step = 2){
-    if ($this->c[0] > $x){
-      $this->c[0] -= $step;
-      return false;
-    } 
+  public function slideX($tX, $step = 2){
+    list($x, $y) = $this->c;
 
-    $this->c[0] = $x;
-    return true;
-  }
-
-  public function slideYUp($y, $step = 2){
-    if ($this->c[1] > $y){
-      $this->c[1] -= $step;
-      return false;
-    }
-
-    $this->c[1] = $y;
-    return true;
-  }
-
-  public function slideTo($c, $step = 2){
-    list($x, $y)   = $this->c;
-    list($tX, $tY) = $c;
-
-    if ($x == $tX && $y == $tY){
+    if ($x == $tX){
       // Animation finished
       return true;
     }
@@ -47,6 +26,19 @@ class Sprite {
     // Lock to final location if close enough
     if (abs($x - $tX) < $step){
       $x = $tX;
+    }
+
+    $this->c = [$x, $y];
+
+    return false;
+  }
+
+  public function slideY($tY, $step = 2){
+    list($x, $y)   = $this->c;
+
+    if ($y == $tY){
+      // Animation finished
+      return true;
     }
 
     if ($y < $tY){

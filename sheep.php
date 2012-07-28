@@ -12,7 +12,7 @@ $sheepy = array_map(function($line){
 }, file(__DIR__."/images/tomnomnom.jpg.txt"));
 
 $sheepySprite = new Sprite([100,2], function($screen) use($sheepy){
-  $this->slideTo([2,2], 20);
+  $this->slideX(2, 4);
   $screen->sprite($this->c, $sheepy);
 });
 $screen->attachSpriteObject($sheepySprite);
