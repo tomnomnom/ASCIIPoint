@@ -11,17 +11,21 @@ class Sprite {
   public function slideXLeft($x, $step = 2){
     if ($this->c[0] > $x){
       $this->c[0] -= $step;
-    } else {
-      $this->c[0] = $x;
-    }
+      return false;
+    } 
+
+    $this->c[0] = $x;
+    return true;
   }
 
   public function slideYUp($y, $step = 2){
     if ($this->c[1] > $y){
       $this->c[1] -= $step;
-    } else {
-      $this->c[1] = $y;
+      return false;
     }
+
+    $this->c[1] = $y;
+    return true;
   }
 
   public function tick($screen){
