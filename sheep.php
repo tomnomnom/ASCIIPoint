@@ -33,11 +33,11 @@ $bio = new Actor([100,7], function($screen){
   $screen->text($this->c, $displayText, 25);
 });
 
-$sheepySprite = Sprite::fromImage(__DIR__."/images/tomnomnom.jpg");
+$sheepySprite = Sprite::fromImage(__DIR__."/images/tomnomnom.jpg", 20);
 
 $sheepy = new Actor([1,30], function($screen) use($sheepySprite, $bio){
 
-  if ($this->slideY(6, 2)){
+  if ($this->slideY(8, 2)){
     $screen->attachActor($bio); 
   }
 
