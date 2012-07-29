@@ -8,4 +8,7 @@ An ASCII presentation tool by Gareth Halfacree and Tom Hudson
 * jp2a
 
 ## Instructions
-Run `./present.sh` to see the example slides. 
+Run `./present.sh` to see the example slides.
+
+## Demo
+http://youtu.be/sgHfxe9UBHQ 
