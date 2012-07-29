@@ -7,6 +7,9 @@ class Sprite {
     $filename = escapeshellarg($filename);
     $ascii = shell_exec("jp2a --height={$height} -i {$filename} | grep -vE '^\s*$'");
 
-    return explode("\n", $ascii);
+    return array_filter(explode("\n", $ascii), function($line){
+      if (!$line) return false;
+      return true;
+    });
   }
 }

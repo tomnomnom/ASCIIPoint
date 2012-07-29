@@ -1,9 +1,9 @@
 <?php
-include __DIR__.'/lib/screen.php';
-include __DIR__.'/lib/actor.php';
-include __DIR__.'/lib/sprite.php';
+include __DIR__.'/../lib/screen.php';
+include __DIR__.'/../lib/actor.php';
+include __DIR__.'/../lib/sprite.php';
 
-$alpha = include __DIR__.'/lib/letters.php';
+$alpha = include __DIR__.'/../lib/letters.php';
 
 $screen = new Screen(101, 31);
 $screen->clear();
@@ -33,7 +33,7 @@ $bio = new Actor([100,9], function($screen){
   $screen->text($this->c, $displayText, 25);
 });
 
-$sheepySprite = Sprite::fromImage(__DIR__."/images/tomnomnom.jpg", 20);
+$sheepySprite = Sprite::fromImage(__DIR__."/../images/tomnomnom.jpg", 20);
 
 $sheepy = new Actor([1,30], function($screen) use($sheepySprite, $bio){
 
