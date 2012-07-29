@@ -11,4 +11,4 @@ An ASCII presentation tool by Gareth Halfacree and Tom Hudson
 Run `./present.sh` to see the example slides.
 
 ## Demo
-http://youtu.be/sgHfxe9UBHQ 
+A demo can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y
