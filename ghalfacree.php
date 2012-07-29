@@ -1,6 +1,7 @@
 <?php
 include __DIR__.'/lib/screen.php';
 include __DIR__.'/lib/actor.php';
+include __DIR__.'/lib/sprite.php';
 
 $alpha = include __DIR__.'/lib/letters.php';
 
@@ -14,7 +15,7 @@ $heading = new Actor([23,-6], function($screen) use($alpha){
 $screen->attachActor($heading);
 
 
-$bio = new Actor([100,7], function($screen){
+$bio = new Actor([100,16], function($screen){
   static $targetText = null;
   static $displayText;
 
@@ -33,13 +34,11 @@ $bio = new Actor([100,7], function($screen){
 });
 
 
-$ghalfacreeSprite = array_map(function($line){
-  return trim($line, "\n");
-}, file(__DIR__."/images/ghalfacree.jpg.txt"));
+$ghalfacreeSprite = Sprite::fromImage(__DIR__."/images/ghalfacree.jpg", 20);
 
 $ghalfacree = new Actor([1,30], function($screen) use($ghalfacreeSprite, $bio){
 
-  if ($this->slideY(6, 2)){
+  if ($this->slideY(8, 2)){
     $screen->attachActor($bio); 
   }
 
