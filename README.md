@@ -1,5 +1,11 @@
-# ASCII Point
+# ASCIIPoint
 
-ASCII Presentations
+An ASCII presentation tool by Gareth Halfacree and Tom Hudson
 
-Test
+## Requirements 
+* linux
+* PHP 5.4
+* jp2a
+
+## Instructions
+Run `./present.sh` to see the example slides. 
