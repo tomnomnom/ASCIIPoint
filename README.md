@@ -1,6 +1,7 @@
 # ASCIIPoint
 
-An ASCII presentation tool by Gareth Halfacree and Tom Hudson
+An ASCII presentation tool by Gareth Halfacree and Tom Hudson. 
+Written in less than 24 hours for LeedsHack 2012.
 
 ## Requirements 
 * linux
@@ -11,4 +12,6 @@ An ASCII presentation tool by Gareth Halfacree and Tom Hudson
 Run `./present.sh` to see the example slides.
 
 ## Demo
-A demo can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y
+A screencast can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y
+
+A live demo at LeedsHack 2012 can be seen here: http://www.youtube.com/watch?v=3fR9q6tfaFQ
