@@ -15,7 +15,7 @@ $heading = new Actor([23,-6], function($screen) use($alpha){
 $screen->attachActor($heading);
 
 
-$bio = new Actor([100,7], function($screen){
+$bio = new Actor([100,9], function($screen){
   static $targetText = null;
   static $displayText;
 
