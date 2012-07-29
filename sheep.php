@@ -1,6 +1,7 @@
 <?php
 include __DIR__.'/lib/screen.php';
 include __DIR__.'/lib/actor.php';
+include __DIR__.'/lib/sprite.php';
 
 $alpha = include __DIR__.'/lib/letters.php';
 
@@ -32,10 +33,7 @@ $bio = new Actor([100,7], function($screen){
   $screen->text($this->c, $displayText, 25);
 });
 
-
-$sheepySprite = array_map(function($line){
-  return trim($line, "\n");
-}, file(__DIR__."/images/tomnomnom.jpg.txt"));
+$sheepySprite = Sprite::fromImage(__DIR__."/images/tomnomnom.jpg");
 
 $sheepy = new Actor([1,30], function($screen) use($sheepySprite, $bio){
 
