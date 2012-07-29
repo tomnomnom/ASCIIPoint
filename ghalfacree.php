@@ -7,23 +7,46 @@ $alpha = include __DIR__.'/lib/letters.php';
 $screen = new Screen(101, 31);
 $screen->clear();
 
-$sheepy = array_map(function($line){
+$heading = new Actor([23,-6], function($screen) use($alpha){
+  $this->slideY(1,1);
+  $screen->spriteWord($this->c, 'ghalfacree', $alpha);
+});
+$screen->attachActor($heading);
+
+
+$bio = new Actor([100,7], function($screen){
+  static $targetText = null;
+  static $displayText;
+
+  if (is_null($targetText)){
+    $targetText = str_split(
+      "- Journalist and author\n".
+      "- Erstwhile sysadmin\n".
+      "- Insert Kickstart disk\n"
+    );
+  }
+
+  $this->slideX(60, 2);
+
+  $displayText .= array_shift($targetText);
+  $screen->text($this->c, $displayText, 25);
+});
+
+
+$ghalfacreeSprite = array_map(function($line){
   return trim($line, "\n");
 }, file(__DIR__."/images/ghalfacree.jpg.txt"));
 
-$textTest = new Actor([60,10], function($screen){
-  $screen->text($this->c, 'I am some text');
-});
+$ghalfacree = new Actor([1,30], function($screen) use($ghalfacreeSprite, $bio){
 
-$sheepySprite = new Actor([50,40], function($screen) use($sheepy,$textTest){
-  if ($this->slideY(2)){
-    if ($this->slideX(5)){
-      $screen->attachActor($textTest);
-    }
+  if ($this->slideY(6, 2)){
+    $screen->attachActor($bio); 
   }
-  $screen->sprite($this->c, $sheepy);
+
+  $screen->sprite($this->c, $ghalfacreeSprite);
 });
-$screen->attachActor($sheepySprite);
+$screen->attachActor($ghalfacree);
+
 
 $border = new Actor([0,0], function($screen){
   $screen->rect($this->c, [100,30], '#');
