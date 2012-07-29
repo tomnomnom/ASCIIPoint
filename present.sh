@@ -5,3 +5,4 @@ for i in `ls example-slides/*.php`; do
   read -p ""
   kill `ps axufw | grep php | grep example-slides | grep -v grep | awk '{print $2}'`
 done
+clear
