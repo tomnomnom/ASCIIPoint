@@ -1,9 +1,9 @@
 <?php
-include __DIR__.'/lib/screen.php';
-include __DIR__.'/lib/actor.php';
-include __DIR__.'/lib/sprite.php';
+include __DIR__.'/../lib/screen.php';
+include __DIR__.'/../lib/actor.php';
+include __DIR__.'/../lib/sprite.php';
 
-$alpha = include __DIR__.'/lib/letters.php';
+$alpha = include __DIR__.'/../lib/letters.php';
 
 $screen = new Screen(101, 31);
 $screen->clear();
@@ -34,7 +34,7 @@ $bio = new Actor([100,16], function($screen){
 });
 
 
-$ghalfacreeSprite = Sprite::fromImage(__DIR__."/images/ghalfacree.jpg", 20);
+$ghalfacreeSprite = Sprite::fromImage(__DIR__."/../images/ghalfacree.jpg", 20);
 
 $ghalfacree = new Actor([1,30], function($screen) use($ghalfacreeSprite, $bio){
 
