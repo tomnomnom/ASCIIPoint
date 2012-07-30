@@ -9,7 +9,8 @@ Written in less than 24 hours for LeedsHack 2012.
 * jp2a
 
 ## Instructions
-Run `./present.sh` to see the example slides.
+Run `./present.sh` to see the example slides. Advance slides with
+Enter.
 
 ## Demo
 A screencast can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y
