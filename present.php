@@ -14,11 +14,20 @@ $cmdName = array_shift($argv);
 $slides = [];
 
 // Remaining arguments are slides
-foreach ($argv as $slide){
-  $slide = new SplFileInfo($slide);
-  if (!$slide->isReadable()) continue;
+foreach ($argv as $candidate){
+  $candidate = new SplFileInfo($candidate);
+  if (!$candidate->isFile()) continue;
 
-  $slides[] = include $slide;
+  $candidate = include $candidate;
+  if ($candidate instanceOf Slide){
+    $slides[] = $candidate;
+  }
+}
+
+if (sizeOf($slides) == 0){
+  echo "No valid slides were found.\n";
+  echo "Be sure your slide files return the Slide object.\n";
+  exit(2);
 }
 
 $stdin = fopen('php://stdin', 'r');
