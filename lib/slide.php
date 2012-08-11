@@ -155,6 +155,65 @@ class Slide {
     } while ($x < 0);
   }
 
+  // Thanks to http://free.pages.at/easyfilter/bresenham.html
+  public function ellipse($topLeft, $bottomRight, $char){
+    list($x0, $y0) = $topLeft;
+    list($x1, $y1) = $bottomRight;
+
+    $a = abs($x1 - $x0);
+    $b = abs($y1 - $y0);
+    $b1 = $b & 1;
+
+    $dx = 4 * (1 - $a) * $b * $b;
+    $dy = 4 * ($b1 + 1) * $a * $a;
+    
+    $err = $dx + $dy + $b1 * $a * $a;
+
+    if ($x0 > $x1){
+      $x0 = $x1;
+      $x1 += $a;
+    }
+
+    if ($y0 > $y1){
+      $y0 = $y1;
+    }
+
+    $y0 += ($b + 1)/2;
+    $y1 = $y0 - $b1;
+
+    $a *= 8 * $a;
+    $b1 = 8 * $b * $b;
+
+    do {
+      $this->setPixel([$x1, $y0], $char);
+      $this->setPixel([$x0, $y0], $char);
+      $this->setPixel([$x0, $y1], $char);
+      $this->setPixel([$x1, $y1], $char);
+
+      $e2 = 2 * $err;
+
+      if ($e2 <= $dy){
+        $y0++;
+        $y1--;
+        $err += $dy += $a;
+      }
+
+      if ($e2 >= $dx || 2*$err > $dy){
+        $x0++;
+        $x1--;
+        $err += $dx += $b1;
+      }
+    } while ($x0 <= $x1);
+
+    while (($y0 - $y1) < $b){
+      $this->setPixel([$x0-1, $y0], $char);
+      $this->setPixel([$x1+1, $y0++], $char);
+      $this->setPixel([$x0-1, $y1], $char);
+      $this->setPixel([$x1+1, $y1--], $char);
+    }
+
+  }
+
   public function text($c, $text, $width = null){
     list($x, $y) = $c;
 
