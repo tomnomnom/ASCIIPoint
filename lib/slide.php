@@ -130,6 +130,31 @@ class Slide {
     $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char); // Right
   }
 
+  // Thanks to http://free.pages.at/easyfilter/bresenham.html
+  public function circle($c, $r, $char){
+    list($xm, $ym) = $c;
+
+    $x = -$r;
+    $y = 0;
+    $err = 2 - (2 * $r);
+
+    do {
+      $this->setPixel([$xm-$x, $ym+$y], $char);
+      $this->setPixel([$xm-$y, $ym-$x], $char);
+      $this->setPixel([$xm+$x, $ym-$y], $char);
+      $this->setPixel([$xm+$y, $ym+$x], $char);
+      $r = $err;
+
+      if ($r <= $y){
+        $err += (++$y * 2) + 1;
+      }
+
+      if ($r > $x || $err > $y){
+        $err += (++$x * 2) + 1;
+      }
+    } while ($x < 0);
+  }
+
   public function text($c, $text, $width = null){
     list($x, $y) = $c;
 
