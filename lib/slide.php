@@ -14,6 +14,9 @@ class Slide {
     $this->width  = $width; 
     $this->height = $height; 
     $this->actors = new SplObjectStorage();
+
+    // Initialise the matrix
+    $this->clear();
   }
 
   public function attachActor(Actor $spriteObject){
@@ -58,22 +61,37 @@ class Slide {
     $this->setPixel($c[0], $c[1], self::BLANK_CHAR);
   }
 
+  // Thanks to http://free.pages.at/easyfilter/bresenham.html
   public function line($start, $finish, $char){
-    if ($start[0] == $finish[0]){
-      // vert
-      $x = $start[0];
-      for ($y = $start[1]; $y <  $finish[1]; $y++){
-        $this->setPixel([$x, $y], $char);
+    list($x0, $y0) = $start;
+    list($x1, $y1) = $finish;
+
+    $dx = abs($x1 - $x0);
+    $sx = ($x0 < $x1)? 1 : -1;
+
+    $dy = -abs($y1 - $y0);
+    $sy = ($y0 < $y1)? 1 : -1;
+
+    $err = $dx + $dy;
+
+    while (true){
+      $this->setPixel([$x0,$y0], $char);
+      if ($x0 == $x1 && $y0 == $y1) break;
+
+      $e2 = 2 * $err;
+
+      if ($e2 >= $dy){
+        $err += $dy;
+        $x0  += $sx;
       }
 
-    } else if ($start[1] == $finish[1]){
-      // horiz
-      $y = $start[1];
-      for ($x = $start[0]; $x <= $finish[0]; $x++){
-        $this->setPixel([$x, $y], $char);
+      if ($e2 <= $dx){
+        $err += $dx;
+        $y0  += $sy;
       }
-
     }
+
+    return true;
   }
 
   public function sprite($c, $sprite){
