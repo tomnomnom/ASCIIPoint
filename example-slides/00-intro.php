@@ -7,7 +7,7 @@ $slide = new Slide(101, 31);
 $slide->clear();
 
 $logoSprite = Sprite::fromImage(__DIR__."/../images/ascii-logo.jpg", 40);
-$logo = new Actor([9,30], function($slide) use($logoSprite, $bio){
+$logo = new Actor([9,30], function($slide) use($logoSprite){
   $this->slideY(2, 2);
   $slide->sprite($this->c, $logoSprite);
 });
