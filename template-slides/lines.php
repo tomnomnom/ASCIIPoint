@@ -22,5 +22,5 @@ $triangle = new Actor([0,0], function($slide){
 // Attach the actor to the slide so that it is displayed
 $slide->attachActor($triangle);
 
-// Remember to return the Slide object so the presenter 
+// Remember to return the Slide object so the presenter script can use it.
 return $slide;
