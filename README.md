@@ -1,7 +1,7 @@
 # ASCIIPoint
 
 An ASCII presentation tool by Gareth Halfacree and Tom Hudson. 
-Written in less than 24 hours for LeedsHack 2012.
+Initially written in less than 24 hours for LeedsHack 2012.
 
 ## Requirements 
 * linux
