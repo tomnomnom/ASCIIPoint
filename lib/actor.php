@@ -58,9 +58,9 @@ class Actor {
     return false;
   }
 
-  public function tick($screen){
+  public function tick($slide){
     $tickFn = $this->tickFn;
-    $tickFn($screen);
+    $tickFn($slide);
   }
 
   public function typewrite($text){

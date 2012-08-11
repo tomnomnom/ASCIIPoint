@@ -1,5 +1,5 @@
 <?php
-class Screen {
+class Slide {
   const BLANK_CHAR = ' ';
   const DEFAULT_WIDTH = 160;
   const DEFAULT_HEIGHT = 45;
