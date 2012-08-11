@@ -214,6 +214,80 @@ class Slide {
 
   }
 
+  // Thanks to http://free.pages.at/easyfilter/bresenham.html
+  public function bezier($start, $control, $finish, $char){
+    list($x0, $y0) = $start;
+    list($x1, $y1) = $control;
+    list($x2, $y2) = $finish;
+
+    $sx = $x2 - $x1;
+    $sy = $y2 - $y1;
+
+    $xx = $x0 - $x1;
+    $yy = $y0 - $y1;
+    
+    $cur = ($xx * $sy) - ($yy * $sx);
+
+    assert(($xx * $sx) <= 0 && ($yy * $sy) <= 0);
+
+    if (($sx * $sx + $sy * $sy) > ($xx * $xx + $yy * $yy)){
+      $x2 = $x0;
+      $x0 = $sx + $x1;
+      $y2 = $y0;
+      $y0 = $sy + $y1;
+      $cur = -$cur;
+    }
+
+    if ($cur != 0){
+      $xx += $sx;
+      $xx *= $sx = ($x0 < $x2)? 1 : -1;
+
+      $yy += $sy;
+      $yy *= $sy = ($y0 < $y2)? 1 : -1;
+
+      $xy = 2 * $xx * $yy;
+      $xx *= $xx;
+      $yy *= $yy;
+
+      if (($cur * $sx * $sy) < 0){
+        $xx = -$xx;
+        $yy = -$yy;
+        $xy = -$xy;
+        $cur = -$cur;
+      }
+
+      $dx = 4 * $sy * $cur * ($x1 - $x0) + $xx - $xy;
+      $dy = 4 * $sx * $cur * ($y0 - $y1) + $yy - $xy;
+
+      $xx += $xx;
+      $yy += $yy;
+      $err = $dx + $dy + $xy;
+
+      do {
+        $this->setPixel([$x0, $y0], $char);
+        if ($x0 == $x2 && $y0 == $y2) return true;
+
+        $y1 = ((2 * $err) < $dx);
+
+        if ((2 * $err) > $dy){
+          $x0 += $sx;
+          $dx -= $xy;
+          $err += $dy += $yy;
+        }
+
+        if ($y1){
+          $y0 += $sy;
+          $dy -= $xy;
+          $err += $dx += $xx;
+        }
+      } while ($dy < 0 && $dx > 0);
+
+      $this->line([$x0, $y0], [$x2, $y2], $char);
+
+      return true;
+    }
+  }
+
   public function text($c, $text, $width = null){
     list($x, $y) = $c;
 
