@@ -9,8 +9,11 @@ Written in less than 24 hours for LeedsHack 2012.
 * jp2a
 
 ## Instructions
-Run `./present.sh` to see the example slides. Advance slides with
+Run `./present.php example-slides/*` to see the example slides. Advance slides with
 Enter.
+
+If you receive the error `./present.php: Permission denied`: you may need to set the present
+script to be executable using `chmod +x present.php`.
 
 ## Demo
 A screencast can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y

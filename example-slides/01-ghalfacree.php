@@ -1,7 +1,5 @@
 <?php
-include __DIR__.'/../lib/screen.php';
-include __DIR__.'/../lib/actor.php';
-include __DIR__.'/../lib/sprite.php';
+include __DIR__.'/../lib/bootstrap.php';
 
 $alpha = include __DIR__.'/../lib/letters.php';
 
@@ -52,10 +50,6 @@ $border = new Actor([0,0], function($screen){
 });
 $screen->attachActor($border);
 
-while (true){
-  $screen->clear();
-  $screen->drawFrame();
-  usleep(65000);
-}
+return $screen;
 
 

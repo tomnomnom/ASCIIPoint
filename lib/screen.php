@@ -134,5 +134,10 @@ class Screen {
     }
   }
 
+  public function tick(){
+    $this->clear();
+    $this->drawFrame();
+  }
+
 }
 
