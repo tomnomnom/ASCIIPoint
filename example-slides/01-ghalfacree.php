@@ -6,14 +6,14 @@ $alpha = include __DIR__.'/../lib/letters.php';
 $slide = new Slide(101, 31);
 $slide->clear();
 
-$heading = new Actor(array(23,-6), function($slide) use($alpha){
-  $this->slideY(1,1);
-  $slide->spriteWord($this->c, 'ghalfacree', $alpha);
+$heading = new Actor(array(23,-6), function($actor, $slide) use($alpha){
+  $actor->slideY(1,1);
+  $slide->spriteWord($actor->c, 'ghalfacree', $alpha);
 });
 $slide->attachActor($heading);
 
 
-$bio = new Actor(array(100,16), function($slide){
+$bio = new Actor(array(100,16), function($actor, $slide){
   static $targetText = null;
   static $displayText;
 
@@ -25,28 +25,28 @@ $bio = new Actor(array(100,16), function($slide){
     );
   }
 
-  $this->slideX(60, 2);
+  $actor->slideX(60, 2);
 
   $displayText .= array_shift($targetText);
-  $slide->text($this->c, $displayText, 25);
+  $slide->text($actor->c, $displayText, 25);
 });
 
 
 $ghalfacreeSprite = Sprite::fromImage(__DIR__."/../images/ghalfacree.jpg", 20);
 
-$ghalfacree = new Actor(array(1,30), function($slide) use($ghalfacreeSprite, $bio){
+$ghalfacree = new Actor(array(1,30), function($actor, $slide) use($ghalfacreeSprite, $bio){
 
-  if ($this->slideY(8, 2)){
+  if ($actor->slideY(8, 2)){
     $slide->attachActor($bio); 
   }
 
-  $slide->sprite($this->c, $ghalfacreeSprite);
+  $slide->sprite($actor->c, $ghalfacreeSprite);
 });
 $slide->attachActor($ghalfacree);
 
 
-$border = new Actor(array(0,0), function($slide){
-  $slide->rect($this->c, array(100,30), '#');
+$border = new Actor(array(0,0), function($actor, $slide){
+  $slide->rect($actor->c, array(100,30), '#');
 });
 $slide->attachActor($border);
 

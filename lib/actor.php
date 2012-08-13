@@ -5,7 +5,7 @@ class Actor {
 
   public function __construct(Array $c, Closure $tickFn){
     $this->c = $c;
-    $this->tickFn = $tickFn->bindTo($this); 
+    $this->tickFn = $tickFn; 
   }
 
   public function slideX($tX, $step = 2){
@@ -60,7 +60,7 @@ class Actor {
 
   public function tick($slide){
     $tickFn = $this->tickFn;
-    $tickFn($slide);
+    $tickFn($this, $slide);
   }
 
   public function typewrite($text){

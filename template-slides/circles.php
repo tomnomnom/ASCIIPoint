@@ -8,7 +8,7 @@ $slide = new Slide(101, 31);
 // Create an "Actor" that displays some "random" circles.
 // "[0,0]" is the initial coordinates of the Actor,
 // but we don't care what they are in this example.
-$circles = new Actor(array(0,0), function($slide){
+$circles = new Actor(array(0,0), function($actor, $slide){
 
   // Draw a circle at [10,10] with radius 7 using the '*' character 
   $slide->circle(array(10,10), 7, '*');
