@@ -3,7 +3,7 @@ class Actor {
   public $c = array(0,0);
   protected $tickFn;
 
-  public function __construct(Array $c, Callable $tickFn){
+  public function __construct(Array $c, Closure $tickFn){
     $this->c = $c;
     $this->tickFn = $tickFn->bindTo($this); 
   }
