@@ -4,6 +4,24 @@ class Slide {
   const DEFAULT_WIDTH = 160;
   const DEFAULT_HEIGHT = 45;
 
+  const BLACK  = '0;30';
+  const RED    = '0;31';
+  const GREEN  = '0;32';
+  const YELLOW = '0;33';
+  const BLUE   = '0;34';
+  const PURPLE = '0;35';
+  const CYAN   = '0;36';
+  const WHITE  = '0;37';
+
+  const BLACK_BOLD  = '1;30';
+  const RED_BOLD    = '1;31';
+  const GREEN_BOLD  = '1;32';
+  const YELLOW_BOLD = '1;33';
+  const BLUE_BOLD   = '1;34';
+  const PURPLE_BOLD = '1;35';
+  const CYAN_BOLD   = '1;36';
+  const WHITE_BOLD  = '1;37';
+
   protected $width = self::DEFAULT_WIDTH;
   protected $height = self::DEFAULT_HEIGHT;
 
@@ -53,8 +71,8 @@ class Slide {
     }
   }
 
-  public function setPixel($c, $char){
-    $this->matrix[$c[1]][$c[0]] = $char;
+  public function setPixel($c, $char, $color = self::WHITE){
+    $this->matrix[$c[1]][$c[0]] = "\033[{$color}m{$char}\033[0m";
   }
 
   public function clearPixel($c){
@@ -62,7 +80,7 @@ class Slide {
   }
 
   // Thanks to http://free.pages.at/easyfilter/bresenham.html
-  public function line($start, $finish, $char){
+  public function line($start, $finish, $char, $color = self::WHITE){
     list($x0, $y0) = $start;
     list($x1, $y1) = $finish;
 
@@ -75,7 +93,7 @@ class Slide {
     $err = $dx + $dy;
 
     while (true){
-      $this->setPixel([$x0,$y0], $char);
+      $this->setPixel([$x0,$y0], $char, $color);
       if ($x0 == $x1 && $y0 == $y1) break;
 
       $e2 = 2 * $err;
@@ -94,12 +112,12 @@ class Slide {
     return true;
   }
 
-  public function sprite($c, $sprite){
+  public function sprite($c, $sprite, $color = self::WHITE){
     list($x, $y) = $c; 
 
     foreach ($sprite as $row){
       foreach ($row as $pixel){
-        $this->setPixel([$x, $y], $pixel);
+        $this->setPixel([$x, $y], $pixel, $color);
         $x++;
       }
       $x = $c[0]; // Reset the $x coord
@@ -107,7 +125,7 @@ class Slide {
     }
   }
 
-  public function spriteWord($c, $word, $alphabet){
+  public function spriteWord($c, $word, $alphabet, $color = self::WHITE){
     list($x, $y) = $c;
     $chars = str_split(strToUpper($word));
 
@@ -115,23 +133,23 @@ class Slide {
       if (!isSet($alphabet[$char])) continue;
       $sprite = $alphabet[$char];
       
-      $this->sprite([$x, $y], $sprite);
+      $this->sprite([$x, $y], $sprite, $color);
       $x += 6;
     }
   }
 
-  public function rect($c, $size, $char = '#'){
+  public function rect($c, $size, $char = '#', $color = self::WHITE){
     list($x, $y) = $c;
     list($w, $h) = $size;
 
-    $this->line([$x,    $y],    [$x+$w, $y],    $char); // Top
-    $this->line([$x,    $y+$h], [$x+$w, $y+$h], $char); // Bottom
-    $this->line([$x,    $y],    [$x,    $y+$h], $char); // Left
-    $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char); // Right
+    $this->line([$x,    $y],    [$x+$w, $y],    $char, $color); // Top
+    $this->line([$x,    $y+$h], [$x+$w, $y+$h], $char, $color); // Bottom
+    $this->line([$x,    $y],    [$x,    $y+$h], $char, $color); // Left
+    $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char, $color); // Right
   }
 
   // Thanks to http://free.pages.at/easyfilter/bresenham.html
-  public function circle($c, $r, $char){
+  public function circle($c, $r, $char, $color = self::WHITE){
     list($xm, $ym) = $c;
 
     $x = -$r;
@@ -139,10 +157,10 @@ class Slide {
     $err = 2 - (2 * $r);
 
     do {
-      $this->setPixel([$xm-$x, $ym+$y], $char);
-      $this->setPixel([$xm-$y, $ym-$x], $char);
-      $this->setPixel([$xm+$x, $ym-$y], $char);
-      $this->setPixel([$xm+$y, $ym+$x], $char);
+      $this->setPixel([$xm-$x, $ym+$y], $char, $color);
+      $this->setPixel([$xm-$y, $ym-$x], $char, $color);
+      $this->setPixel([$xm+$x, $ym-$y], $char, $color);
+      $this->setPixel([$xm+$y, $ym+$x], $char, $color);
       $r = $err;
 
       if ($r <= $y){
@@ -156,7 +174,7 @@ class Slide {
   }
 
   // Thanks to http://free.pages.at/easyfilter/bresenham.html
-  public function ellipse($topLeft, $bottomRight, $char){
+  public function ellipse($topLeft, $bottomRight, $char, $color = self::WHITE){
     list($x0, $y0) = $topLeft;
     list($x1, $y1) = $bottomRight;
 
@@ -185,10 +203,10 @@ class Slide {
     $b1 = 8 * $b * $b;
 
     do {
-      $this->setPixel([$x1, $y0], $char);
-      $this->setPixel([$x0, $y0], $char);
-      $this->setPixel([$x0, $y1], $char);
-      $this->setPixel([$x1, $y1], $char);
+      $this->setPixel([$x1, $y0], $char, $color);
+      $this->setPixel([$x0, $y0], $char, $color);
+      $this->setPixel([$x0, $y1], $char, $color);
+      $this->setPixel([$x1, $y1], $char, $color);
 
       $e2 = 2 * $err;
 
@@ -206,16 +224,16 @@ class Slide {
     } while ($x0 <= $x1);
 
     while (($y0 - $y1) < $b){
-      $this->setPixel([$x0-1, $y0], $char);
-      $this->setPixel([$x1+1, $y0++], $char);
-      $this->setPixel([$x0-1, $y1], $char);
-      $this->setPixel([$x1+1, $y1--], $char);
+      $this->setPixel([$x0-1, $y0],   $char, $color);
+      $this->setPixel([$x1+1, $y0++], $char, $color);
+      $this->setPixel([$x0-1, $y1],   $char, $color);
+      $this->setPixel([$x1+1, $y1--], $char, $color);
     }
 
   }
 
   // Thanks to http://free.pages.at/easyfilter/bresenham.html
-  public function bezier($start, $control, $finish, $char){
+  public function bezier($start, $control, $finish, $char, $color = self::WHITE){
     list($x0, $y0) = $start;
     list($x1, $y1) = $control;
     list($x2, $y2) = $finish;
@@ -264,7 +282,7 @@ class Slide {
       $err = $dx + $dy + $xy;
 
       do {
-        $this->setPixel([$x0, $y0], $char);
+        $this->setPixel([$x0, $y0], $char, $color);
         if ($x0 == $x2 && $y0 == $y2) return true;
 
         $y1 = ((2 * $err) < $dx);
@@ -282,13 +300,13 @@ class Slide {
         }
       } while ($dy < 0 && $dx > 0);
 
-      $this->line([$x0, $y0], [$x2, $y2], $char);
+      $this->line([$x0, $y0], [$x2, $y2], $char, $color);
 
       return true;
     }
   }
 
-  public function text($c, $text, $width = null){
+  public function text($c, $text, $width = null, $color = self::WHITE){
     list($x, $y) = $c;
 
     if (is_null($width)){
@@ -302,7 +320,7 @@ class Slide {
 
       foreach ($chars as $char){
         if (!$char) continue;
-        $this->setPixel([$x, $y], $char);
+        $this->setPixel([$x, $y], $char, $color);
         $x++;
       }
       $x = $c[0]; // Reset X
