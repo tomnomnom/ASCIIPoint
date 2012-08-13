@@ -98,7 +98,7 @@ class Slide {
     list($x, $y) = $c; 
 
     foreach ($sprite as $row){
-      foreach (str_split($row) as $pixel){
+      foreach ($row as $pixel){
         $this->setPixel([$x, $y], $pixel);
         $x++;
       }
