@@ -5,8 +5,8 @@ Initially written in less than 24 hours for LeedsHack 2012.
 
 ## Requirements 
 * linux
-* PHP 5.4
-* jp2a
+* PHP 5.4 (for short array syntax, `Callable` type hints and `Closure::bindTo()`)
+* jp2a (for image to ASCII conversion)
 
 ## Instructions
 Run `./present.php example-slides/*` to see the example slides. Advance slides with
