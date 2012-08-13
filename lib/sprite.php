@@ -1,7 +1,7 @@
 <?php
 class Sprite {
   public static function fromImage($filename, $height = 26){
-    if (!file_exists($filename)) return [];
+    if (!file_exists($filename)) return array();
 
     $height = (int) $height;
     $filename = escapeshellarg($filename);

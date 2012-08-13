@@ -6,14 +6,14 @@ $alpha = include __DIR__.'/../lib/letters.php';
 $slide = new Slide(101, 31);
 $slide->clear();
 
-$heading = new Actor([23,-6], function($slide) use($alpha){
+$heading = new Actor(array(23,-6), function($slide) use($alpha){
   $this->slideY(1,1);
   $slide->spriteWord($this->c, 'TomNomNom', $alpha);
 });
 $slide->attachActor($heading);
 
 
-$bio = new Actor([100,9], function($slide){
+$bio = new Actor(array(100,9), function($slide){
   static $targetText = null;
   static $displayText;
 
@@ -33,7 +33,7 @@ $bio = new Actor([100,9], function($slide){
 
 $sheepySprite = Sprite::fromImage(__DIR__."/../images/tomnomnom.jpg", 20);
 
-$sheepy = new Actor([1,30], function($slide) use($sheepySprite, $bio){
+$sheepy = new Actor(array(1,30), function($slide) use($sheepySprite, $bio){
 
   if ($this->slideY(8, 2)){
     $slide->attachActor($bio); 
@@ -44,8 +44,8 @@ $sheepy = new Actor([1,30], function($slide) use($sheepySprite, $bio){
 $slide->attachActor($sheepy);
 
 
-$border = new Actor([0,0], function($slide){
-  $slide->rect($this->c, [100,30], '#');
+$border = new Actor(array(0,0), function($slide){
+  $slide->rect($this->c, array(100,30), '#');
 });
 $slide->attachActor($border);
 

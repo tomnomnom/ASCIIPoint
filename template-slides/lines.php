@@ -8,14 +8,14 @@ $slide = new Slide(101, 31);
 // Create an "Actor" that displays a triangle.
 // "[0,0]" is the initial coordinates of the Actor, 
 // but we don't care what they are in this example.
-$triangle = new Actor([0,0], function($slide){
+$triangle = new Actor(array(0,0), function($slide){
 
   // Draw a line from [5,5] to [55,55] using the '#' character 
-  $slide->line([5,5], [55,5], '#');
+  $slide->line(array(5,5), array(55,5), '#');
 
-  $slide->line([5,5], [30,25], '#');
+  $slide->line(array(5,5), array(30,25), '#');
 
-  $slide->line([30,25], [55,5], '#');
+  $slide->line(array(30,25), array(55,5), '#');
 
 });
 

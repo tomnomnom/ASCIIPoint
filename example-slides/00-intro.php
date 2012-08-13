@@ -7,19 +7,19 @@ $slide = new Slide(101, 31);
 $slide->clear();
 
 $logoSprite = Sprite::fromImage(__DIR__."/../images/ascii-logo.jpg", 40);
-$logo = new Actor([9,30], function($slide) use($logoSprite){
+$logo = new Actor(array(9,30), function($slide) use($logoSprite){
   $this->slideY(2, 2);
   $slide->sprite($this->c, $logoSprite);
 });
 
 $slide->attachActor($logo);
-$point = new Actor([54,-6], function($slide) use($alpha){
+$point = new Actor(array(54,-6), function($slide) use($alpha){
   $this->slideY(14,1);
   $slide->spriteWord($this->c, 'Point', $alpha);
 });
 $slide->attachActor($point);
 
-$intro = new Actor([54,25], function($slide){
+$intro = new Actor(array(54,25), function($slide){
   static $targetText = null;
   static $displayText;
 
@@ -36,8 +36,8 @@ $intro = new Actor([54,25], function($slide){
 });
 $slide->attachActor($intro);
 
-$border = new Actor([0,0], function($slide){
-  $slide->rect($this->c, [100,30], '*');
+$border = new Actor(array(0,0), function($slide){
+  $slide->rect($this->c, array(100,30), '*');
 });
 $slide->attachActor($border);
 

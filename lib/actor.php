@@ -1,6 +1,6 @@
 <?php
 class Actor {
-  public $c = [0,0];
+  public $c = array(0,0);
   protected $tickFn;
 
   public function __construct(Array $c, Callable $tickFn){
@@ -28,7 +28,7 @@ class Actor {
       $x = $tX;
     }
 
-    $this->c = [$x, $y];
+    $this->c = array($x, $y);
 
     return false;
   }
@@ -53,7 +53,7 @@ class Actor {
       $y = $tY;
     }
 
-    $this->c = [$x, $y];
+    $this->c = array($x, $y);
 
     return false;
   }

@@ -25,7 +25,7 @@ class Slide {
   protected $width = self::DEFAULT_WIDTH;
   protected $height = self::DEFAULT_HEIGHT;
 
-  protected $matrix = [];
+  protected $matrix = array();
   protected $actors = null;
 
   public function __construct($width = self::DEFAULT_WIDTH, $height = self::DEFAULT_HEIGHT){
@@ -64,7 +64,7 @@ class Slide {
 
   public function clear(){
     for ($y = 0; $y < $this->height; $y++){
-      $this->matrix[$y] = [];
+      $this->matrix[$y] = array();
       for ($x = 0; $x < $this->width; $x++){
         $this->matrix[$y][$x] = self::BLANK_CHAR; 
       }
@@ -93,7 +93,7 @@ class Slide {
     $err = $dx + $dy;
 
     while (true){
-      $this->setPixel([$x0,$y0], $char, $color);
+      $this->setPixel(array($x0,$y0), $char, $color);
       if ($x0 == $x1 && $y0 == $y1) break;
 
       $e2 = 2 * $err;
@@ -117,7 +117,7 @@ class Slide {
 
     foreach ($sprite as $row){
       foreach ($row as $pixel){
-        $this->setPixel([$x, $y], $pixel, $color);
+        $this->setPixel(array($x, $y), $pixel, $color);
         $x++;
       }
       $x = $c[0]; // Reset the $x coord
@@ -133,7 +133,7 @@ class Slide {
       if (!isSet($alphabet[$char])) continue;
       $sprite = $alphabet[$char];
       
-      $this->sprite([$x, $y], $sprite, $color);
+      $this->sprite(array($x, $y), $sprite, $color);
       $x += 6;
     }
   }
@@ -142,10 +142,10 @@ class Slide {
     list($x, $y) = $c;
     list($w, $h) = $size;
 
-    $this->line([$x,    $y],    [$x+$w, $y],    $char, $color); // Top
-    $this->line([$x,    $y+$h], [$x+$w, $y+$h], $char, $color); // Bottom
-    $this->line([$x,    $y],    [$x,    $y+$h], $char, $color); // Left
-    $this->line([$x+$w, $y],    [$x+$w, $y+$h], $char, $color); // Right
+    $this->line(array($x,    $y),    array($x+$w, $y),    $char, $color); // Top
+    $this->line(array($x,    $y+$h), array($x+$w, $y+$h), $char, $color); // Bottom
+    $this->line(array($x,    $y),    array($x,    $y+$h), $char, $color); // Left
+    $this->line(array($x+$w, $y),    array($x+$w, $y+$h), $char, $color); // Right
   }
 
   // Thanks to http://free.pages.at/easyfilter/bresenham.html
@@ -157,10 +157,10 @@ class Slide {
     $err = 2 - (2 * $r);
 
     do {
-      $this->setPixel([$xm-$x, $ym+$y], $char, $color);
-      $this->setPixel([$xm-$y, $ym-$x], $char, $color);
-      $this->setPixel([$xm+$x, $ym-$y], $char, $color);
-      $this->setPixel([$xm+$y, $ym+$x], $char, $color);
+      $this->setPixel(array($xm-$x, $ym+$y), $char, $color);
+      $this->setPixel(array($xm-$y, $ym-$x), $char, $color);
+      $this->setPixel(array($xm+$x, $ym-$y), $char, $color);
+      $this->setPixel(array($xm+$y, $ym+$x), $char, $color);
       $r = $err;
 
       if ($r <= $y){
@@ -203,10 +203,10 @@ class Slide {
     $b1 = 8 * $b * $b;
 
     do {
-      $this->setPixel([$x1, $y0], $char, $color);
-      $this->setPixel([$x0, $y0], $char, $color);
-      $this->setPixel([$x0, $y1], $char, $color);
-      $this->setPixel([$x1, $y1], $char, $color);
+      $this->setPixel(array($x1, $y0), $char, $color);
+      $this->setPixel(array($x0, $y0), $char, $color);
+      $this->setPixel(array($x0, $y1), $char, $color);
+      $this->setPixel(array($x1, $y1), $char, $color);
 
       $e2 = 2 * $err;
 
@@ -224,10 +224,10 @@ class Slide {
     } while ($x0 <= $x1);
 
     while (($y0 - $y1) < $b){
-      $this->setPixel([$x0-1, $y0],   $char, $color);
-      $this->setPixel([$x1+1, $y0++], $char, $color);
-      $this->setPixel([$x0-1, $y1],   $char, $color);
-      $this->setPixel([$x1+1, $y1--], $char, $color);
+      $this->setPixel(array($x0-1, $y0),   $char, $color);
+      $this->setPixel(array($x1+1, $y0++), $char, $color);
+      $this->setPixel(array($x0-1, $y1),   $char, $color);
+      $this->setPixel(array($x1+1, $y1--), $char, $color);
     }
 
   }
@@ -282,7 +282,7 @@ class Slide {
       $err = $dx + $dy + $xy;
 
       do {
-        $this->setPixel([$x0, $y0], $char, $color);
+        $this->setPixel(array($x0, $y0), $char, $color);
         if ($x0 == $x2 && $y0 == $y2) return true;
 
         $y1 = ((2 * $err) < $dx);
@@ -300,7 +300,7 @@ class Slide {
         }
       } while ($dy < 0 && $dx > 0);
 
-      $this->line([$x0, $y0], [$x2, $y2], $char, $color);
+      $this->line(array($x0, $y0), array($x2, $y2), $char, $color);
 
       return true;
     }
@@ -320,7 +320,7 @@ class Slide {
 
       foreach ($chars as $char){
         if (!$char) continue;
-        $this->setPixel([$x, $y], $char, $color);
+        $this->setPixel(array($x, $y), $char, $color);
         $x++;
       }
       $x = $c[0]; // Reset X

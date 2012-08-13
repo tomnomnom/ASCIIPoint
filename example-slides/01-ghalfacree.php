@@ -6,14 +6,14 @@ $alpha = include __DIR__.'/../lib/letters.php';
 $slide = new Slide(101, 31);
 $slide->clear();
 
-$heading = new Actor([23,-6], function($slide) use($alpha){
+$heading = new Actor(array(23,-6), function($slide) use($alpha){
   $this->slideY(1,1);
   $slide->spriteWord($this->c, 'ghalfacree', $alpha);
 });
 $slide->attachActor($heading);
 
 
-$bio = new Actor([100,16], function($slide){
+$bio = new Actor(array(100,16), function($slide){
   static $targetText = null;
   static $displayText;
 
@@ -34,7 +34,7 @@ $bio = new Actor([100,16], function($slide){
 
 $ghalfacreeSprite = Sprite::fromImage(__DIR__."/../images/ghalfacree.jpg", 20);
 
-$ghalfacree = new Actor([1,30], function($slide) use($ghalfacreeSprite, $bio){
+$ghalfacree = new Actor(array(1,30), function($slide) use($ghalfacreeSprite, $bio){
 
   if ($this->slideY(8, 2)){
     $slide->attachActor($bio); 
@@ -45,8 +45,8 @@ $ghalfacree = new Actor([1,30], function($slide) use($ghalfacreeSprite, $bio){
 $slide->attachActor($ghalfacree);
 
 
-$border = new Actor([0,0], function($slide){
-  $slide->rect($this->c, [100,30], '#');
+$border = new Actor(array(0,0), function($slide){
+  $slide->rect($this->c, array(100,30), '#');
 });
 $slide->attachActor($border);
 

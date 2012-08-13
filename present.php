@@ -11,7 +11,7 @@ if ($argc < 2){
 
 $cmdName = array_shift($argv);
 
-$slides = [];
+$slides = array();
 
 // Remaining arguments are slides
 foreach ($argv as $candidate){

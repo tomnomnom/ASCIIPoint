@@ -8,10 +8,10 @@ $slide = new Slide(101, 31);
 // Create an "Actor" that displays an ellipse
 // "[0,0]" is the initial coordinates of the Actor,
 // but we don't care what they are in this example.
-$ellipse = new Actor([0,0], function($slide){
+$ellipse = new Actor(array(0,0), function($slide){
 
   // Draw an ellipse inside the rectangle [10,10] [40,20] using the '#' character
-  $slide->ellipse([10,10], [40,20], '#');
+  $slide->ellipse(array(10,10), array(40,20), '#');
 
 });
 

@@ -8,11 +8,11 @@ $slide = new Slide(101, 31);
 // Create an "Actor" that displays a bezier curve.
 // "[0,0]" is the initial coordinates of the Actor,
 // but we don't care what they are in this example.
-$bezier = new Actor([0,0], function($slide){
+$bezier = new Actor(array(0,0), function($slide){
 
   // Draw a bezier curve between [0,30] and [100,20], with [48,1] 
   // as the "control point", using the '#' character
-  $slide->bezier([0,30], [48,1], [100,20], '#');
+  $slide->bezier(array(0,30), array(48,1), array(100,20), '#');
 
 });
 
