@@ -19,6 +19,13 @@ To run a single slide (e.g. one of the template slides), just pass the filename 
 
     ./present.php template-slides/lines.php 
 
+## Features
+* Basic text
+* Line, rectangle, circle, ellipse, and simple bezier curve drawing
+* Slide-X and slide-Y animations
+* On-the-fly image to ASCII conversion
+* Regular and bold ANSI colours
+
 ## Demo
 A screencast can be seen here: http://www.youtube.com/watch?v=9wPgShYsN2Y
 
